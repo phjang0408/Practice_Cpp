@@ -1,39 +1,56 @@
-// 클래스
+// 1) 캡슐화 - 상속 접근 제어자 비교
 #include <iostream>
-
 using namespace std;
 
-class bank {
-private:
-	int safe;
-
+class Parent {
 public:
-	bank();
-	void use_counter(int _in, int _out);
+	void publicMethod() { cout << "publicMethod" << endl; }
+protected:
+	void protectedMethod() { cout << "protectedMethod" << endl; }
+private:
+	void privateMethod() { cout << "privateMethod" << endl; }
 };
 
-bank::bank() {
-	safe = 1000;
-	cout << "최초 금고 : " << safe << endl;
-	cout << endl;
-}
+// 1. Public 상속
+class PublicChild : public Parent {
+public:
+	void test() {
+		publicMethod();			// 부모의 public : 자식에서도 public, 내부 호출 가능
+		protectedMethod();		// 부모의 protected : 자식도 protected, 가능
+		//privateMethod();		// 부모의 private는 상속 X
+	}
+};
 
-void bank::use_counter(int _in, int _out) {
-	safe += _in;
-	safe -= _out;
+// 2. Protected 상속
+class ProtectedChild : protected Parent {
+public:
+	void test() {
+		publicMethod();			// 부모의 public : 자식에서 protected로 바뀜, 내부호출만 가능
+		protectedMethod();		// 부모의 protected : 자식도 protected, 내부 호출 가능
+		//privateMethod();		// 부모의 private는 마찬가지로 상속 X
+	}
+};
 
-	cout << "입금 : " << _in << endl;
-	cout << "출금 : " << _out << endl;
-	cout << "금고 : " << safe << endl;
-	cout << endl;
-}
+// 3. Private 상속
+class PrivateChild : private Parent { // private 생략해도, 디폴트는 private
+public:
+	void test() {
+		publicMethod();			// 부모의 public이 자식에서 private으로 바뀜, 내부에서만 가능
+		protectedMethod();		// 부모의 protected도 private로 바뀜, 내부에서만 가능
+		//privateMethod();
+	}
+};
 
 int main() {
-	bank my_bank;
+	PublicChild pubc;
+	pubc.publicMethod();
+	// pubc.protectedMethod();	//외부 호출 불가능
 
-	my_bank.use_counter(0,20);		//출금 20
-	my_bank.use_counter(20, 0);		// 입금 50
-	my_bank.use_counter(100, 50);	// 입금 100, 출금 50
+	ProtectedChild proc;
+	//proc.publicMethod();
+
+	PrivateChild pric;
+	//pric.publicMethod();		//불가능 
 
 	return 0;
 }
