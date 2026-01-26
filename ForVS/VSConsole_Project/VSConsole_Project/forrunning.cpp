@@ -1,56 +1,83 @@
-// 1) Ä¸½¶È­ - »ó¼Ó Á¢±Ù Á¦¾îÀÚ ºñ±³
-#include <iostream>
+ï»¿ï»¿#include <iostream>
 using namespace std;
 
-class Parent {
+class character {
 public:
-	void publicMethod() { cout << "publicMethod" << endl; }
+	character() : hp(100), power(100) {};
+
 protected:
-	void protectedMethod() { cout << "protectedMethod" << endl; }
-private:
-	void privateMethod() { cout << "privateMethod" << endl; }
+	int hp;
+	int power;
 };
 
-// 1. Public »ó¼Ó
-class PublicChild : public Parent {
+//character í´ëž˜ìŠ¤ë¥¼ ìƒì† ë°›ì€ player í´ëž˜ìŠ¤
+class player : public character {
 public:
-	void test() {
-		publicMethod();			// ºÎ¸ðÀÇ public : ÀÚ½Ä¿¡¼­µµ public, ³»ºÎ È£Ãâ °¡´É
-		protectedMethod();		// ºÎ¸ðÀÇ protected : ÀÚ½Äµµ protected, °¡´É
-		//privateMethod();		// ºÎ¸ðÀÇ private´Â »ó¼Ó X
-	}
+	player() {};
 };
 
-// 2. Protected »ó¼Ó
-class ProtectedChild : protected Parent {
+//ê¸°ë³¸ Monster í´ëž˜ìŠ¤
+class monster {
 public:
-	void test() {
-		publicMethod();			// ºÎ¸ðÀÇ public : ÀÚ½Ä¿¡¼­ protected·Î ¹Ù²ñ, ³»ºÎÈ£Ãâ¸¸ °¡´É
-		protectedMethod();		// ºÎ¸ðÀÇ protected : ÀÚ½Äµµ protected, ³»ºÎ È£Ãâ °¡´É
-		//privateMethod();		// ºÎ¸ðÀÇ private´Â ¸¶Âù°¡Áö·Î »ó¼Ó X
-	}
+	monster() {};
+	void get_damage(int _damage) {};
+	void attack(player target_player) {};
+	void attack_special(player target_player);
 };
 
-// 3. Private »ó¼Ó
-class PrivateChild : private Parent { // private »ý·«ÇØµµ, µðÆúÆ®´Â private
+void monster::attack_special(player target_player) {
+	cout << "ê¸°ë³¸ ê³µê²© : ë°ë¯¸ì§€ - 10 hp" << endl;
+}
+
+//ëª¬ìŠ¤í„° AëŠ” ê¸°ë³¸ Monster í´ëž˜ìŠ¤ë¡œë¶€í„° ìƒì†
+class monster_a : public monster, character {
 public:
-	void test() {
-		publicMethod();			// ºÎ¸ðÀÇ publicÀÌ ÀÚ½Ä¿¡¼­ privateÀ¸·Î ¹Ù²ñ, ³»ºÎ¿¡¼­¸¸ °¡´É
-		protectedMethod();		// ºÎ¸ðÀÇ protectedµµ private·Î ¹Ù²ñ, ³»ºÎ¿¡¼­¸¸ °¡´É
-		//privateMethod();
-	}
+	//ìƒì†ë°›ì€ í•¨ìˆ˜ ì˜¤ë²„ë¼ì´ë”© 
+	void attack_special(player target_player);
 };
+
+void monster_a::attack_special(player target_player) {
+	cout << "ì¸í…¡ê¸€ ê³µê²© : ë°ë¯¸ì§€ - 15 hp" << endl;
+}
+
+//ëª¬ìŠ¤í„° BëŠ” ê¸°ë³¸ Monster í´ëž˜ìŠ¤ë¡œë¶€í„° ìƒì†
+class monster_b : public monster, character {
+public:
+	//ìƒì†ë°›ì€ í•¨ìˆ˜ ì˜¤ë²„ë¼ì´ë”©
+	void attack_special(player target_player);
+};
+
+void monster_b::attack_special(player target_player) {
+	cout << "ê°€ìƒ ê³µê²© : ë°ë¯¸ì§€ - 0 hp" << endl;
+}
+
+//ëª¬ìŠ¤í„° CëŠ” ê¸°ë³¸ Monster í´ëž˜ìŠ¤ë¡œë¶€í„° ìƒì†
+class monster_c : public monster, character {
+public:
+	//ìƒì†ë°›ì€ í•¨ìˆ˜ ì˜¤ë²„ë¼ì´ë”©
+	void attack_special(player target_player);
+};
+
+void monster_c::attack_special(player target_player) {
+	cout << "ê°•ë ¥ ë‡Œì „ ê³µê²© : ë°ë¯¸ì§€ - 100 hp" << endl;
+}
 
 int main() {
-	PublicChild pubc;
-	pubc.publicMethod();
-	// pubc.protectedMethod();	//¿ÜºÎ È£Ãâ ºÒ°¡´É
+	player player_1;
 
-	ProtectedChild proc;
-	//proc.publicMethod();
+	monster_a forest_monster;
+	monster_b tutorial_monster;
+	monster_c boss_monster;
 
-	PrivateChild pric;
-	//pric.publicMethod();		//ºÒ°¡´É 
+	cout << "ì˜¤ë²„ë¼ì´ë”©ëœ ê³µê²©" << endl;
+	tutorial_monster.attack_special(player_1);
+	forest_monster.attack_special(player_1);
+	boss_monster.attack_special(player_1);
+
+	cout << endl << "ê¸°ë³¸(monster í´ëž˜ìŠ¤) ê³µê²©" << endl;
+	tutorial_monster.monster::attack_special(player_1);
+	forest_monster.monster::attack_special(player_1);
+	boss_monster.monster::attack_special(player_1);
 
 	return 0;
 }

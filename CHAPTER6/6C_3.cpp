@@ -17,7 +17,7 @@ public:
 	void test() {
 		publicMethod();			// 부모의 public : 자식에서도 public, 내부 호출 가능
 		protectedMethod();		// 부모의 protected : 자식도 protected, 가능
-		//privateMethod();		// 부모의 private는 상속 X
+		//privateMethod();		// 부모의 private는 자식이 접근 X(존재는 하기에 상속은 됨)
 	}
 };
 
