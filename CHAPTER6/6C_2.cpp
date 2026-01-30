@@ -7,7 +7,7 @@ public:
 	std::string publicVar = "누구든 접근 가능한 Public";
 
 protected:
-	std::string protectedVar = "자식만 접근 가능 Protected";
+	std::string protectedVar = "본인과 자식만 접근 가능 Protected";
 
 private:
 	std::string privateVar = "해당 클래스만 접근 가능 Private";
@@ -31,7 +31,7 @@ int main() {
 	std::cout << p.publicVar << std::endl;			// 외부 호출 가능!
 
 	// 2. Protected 접근
-	//std::cout << p.protectedVar << std::endl;		// 외부 호출 불가능!
+	//std::cout << p.protectedVar << std::endl;		// **외부 호출 불가능!**
 	c.accessCheck();
 
 	// 3. Private 접근

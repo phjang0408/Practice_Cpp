@@ -1,4 +1,4 @@
-// 1. 캡슐화 - 상속 접근 제어자 비교
+// 1. 캡슐화 - '상속'에서의 접근 제어자 비교
 #include <iostream>
 using namespace std;
 
