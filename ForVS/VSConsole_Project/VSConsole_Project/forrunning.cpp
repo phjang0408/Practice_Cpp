@@ -1,41 +1,52 @@
-﻿// 정적 멤버와 정적 함수
-
-/* 클래스는 정적 멤버 변수와 함수를 가질 수 있다.
-* '정적 멤버 변수'는 클래스의 모든 객체가 공유하고, 객체를 생성하지 않아도 사용할 수 있다.
-* 프로그램 실행 시작 시 메모리 할당, 종료 시 해제
-* 
-* '정적 멤버 함수'는 객체를 통하지 않고 호출할 수 있으며, 일반 멤버 변수에는 접근할 수 없다.
-* 이는 정적 멤버 함수가 객체의 특정 인스턴스에 속하지 않기 때문이다.
-*/
+﻿// 생성자와 소멸자 - 심화
 #include <iostream>
+#include <string>]
 
 class Player {
-private:
-    int score;   // 개별 플레이어 점수
-    static int totalScore; // 전체 점수인 '정적 멤버 변수'
-
 public:
-    Player() : score(0) {}
+	//멤버 변수
+	std::string* name;
 
-    void addScore(int achieved_score) {
-        score += achieved_score;
-        totalScore += achieved_score;
-    }
+	// [기본] - 매개변수 생성자
+	Player(std::string n) {
+		name = new std::string(n);
+		std::cout << *name << ": 생성자 호출 (메모리 할당)" << std::endl;
+	}
 
-    int getScore() const { return score; }
-    static int getTotalScore() { return totalScore; } // '정적 멤버 변수'에 접근하는,'정적 멤버 함수'
+	// [심화 1] 복사 대입 연산자
+	//p3 = p2 처럼 이미 생성된 객체끼리, 값을 복사할 때 사용
+	Player& operator = (const Player& other) {
+		if (this == &other) return *this; // 자기자신은 대입 X
+
+		delete name;	//기존 메모리 해제
+		name = new std::string(*other.name); // 깊은 복사
+		std::cout << *name << ": 대입 연산자 호출" << std::endl;
+		return *this;
+	}
+
+	// [심화 2] : 이동 생성자
+	// 임시 객체의 메모리 주소를 뺏어옴(소유권 이전, 주소만 바꾸는 방식)
+	Player(Player&& other) : name(other.name) {
+		other.name = nullptr;	//원본 포인터 끊기
+		std::cout << "이동 생성자 호출" << std::endl;
+	}
+
+	// [심화 3] : 가상 소멸자
+	// 상속 관계에서, 자식 객체가 안전하게 지워지도록 보장함
+	virtual ~Player() {
+		if (name != nullptr) {
+			std::cout << *name << ": 소멸자 호출(메모리 해제)" << std::endl;
+			delete name;
+		}
+	}
 };
-
-// Static 변수는 클래스 외부에서 초기화해야 합니다.
-int Player::totalScore = 0;
-
 int main() {
-	Player Minsu, Dongwoo;
-	
-	Minsu.addScore(10);
-	Dongwoo.addScore(20);
+	Player p1("JIUK");			// 생성자
+	Player p2("Minji");
 
-	//객체를 통하지 않고, '정적 멤버 함수' 호출
-	std::cout << "Score : " << Player::getTotalScore() << std::endl;
+	p2 = p1;					// 복사 대입 연산자
+
+	Player p3 = std::move(p1);	// 이동 생성자(p1의 자원을 p3로 뺏어옴, p1은 nullptr이 됨)
+
 	return 0;
 }
