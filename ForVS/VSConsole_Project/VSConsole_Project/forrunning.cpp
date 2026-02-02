@@ -1,6 +1,6 @@
 ﻿// 생성자와 소멸자 - 심화
 #include <iostream>
-#include <string>]
+#include <string>
 
 class Player {
 public:
