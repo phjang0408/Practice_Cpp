@@ -27,7 +27,7 @@ public:
     static int getTotalScore() { return totalScore; } // '정적 멤버 변수'에 접근하는,'정적 멤버 함수'
 };
 
-// Static 변수는 클래스 외부에서 초기화해야 합니다.
+// [Static 변수는 클래스 외부에서 초기화]해야 합니다.
 int Player::totalScore = 0;
 
 int main() {
