@@ -31,7 +31,7 @@ int main() {
 	std::cout << p.publicVar << std::endl;			// 외부 호출 가능!
 
 	// 2. Protected 접근
-	//std::cout << p.protectedVar << std::endl;		// **외부 호출 불가능!**
+	//std::cout << p.protectedVar << std::endl;		// **외부 호출 불가능!** - Protected헷갈리는거
 	c.accessCheck();
 
 	// 3. Private 접근
