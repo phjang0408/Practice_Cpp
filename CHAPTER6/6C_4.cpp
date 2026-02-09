@@ -22,7 +22,7 @@ public:
 
 class Cat : public Animal {
 public:
-	void speak() override {
+	void speak() override final{	// final은 '더 이상 오버라이드, 상속 금지"
 		std::cout << "고양이는 '야옹' 소리를 낸다." << std::endl;
 	}
 };
