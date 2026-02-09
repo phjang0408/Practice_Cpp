@@ -1,54 +1,46 @@
-﻿// friend 키워드
-// "다른 클래스/함수에게, 내 private,protected [접근 권한]을 준다.
-// friend 함수에는 '전역으로 설정하기'와 '다른 클래스에게 열여주기' 두 가지가 있다.
+﻿// 정적멤버 'static'의 활용
 #include <iostream>
 using namespace std;
 
-class Player;	// 전방 선언 - Healer의 heal 매개변수가 Player라서
-
-// Player의 friend 클래스 '힐러'
-class Healer {
+// 정적 클래스(정적 멤버로만 구성된 클래스, 공식용어 X)
+class GameUtil {
 public:
-	void heal(Player& p);	// friend키워드를 Player에게서 얻고 난 후에 정의할거임
+	GameUtil() = delete;	// 객체 생성 금지
+
+	static void printLine() { cout << "---------------" << endl; }
 };
 
-class Player {
+class Monster {
 private:
-	int hp = 100;
-	// friend 키워드 함수 1) : 전역 함수
-	// 전역 함수처럼 사용할 수 있게 + Player 클래스의 private멤버 '접근 권한'도 생김
-	friend void printHP(const Player& p);
-
-	// friend 키워드 함수 2) : 특정 클래스의 특정 멤버 함수
-	// "Player 내부를, Healer의 heal 함수에게만 공개한다!"
-	friend void Healer::heal(Player& p);
-
+	int hp;
+	Monster(int hp) :hp(hp) {}	// 외부 생성을 못하게 private로
 public:
-	Player(int h) : hp(h) {}
-};
+	void info() { cout << "Monster HP : " << hp << endl; }
 
-// 1) 전역 friend 함수 정의 -> 전역함수이므로, class 밖에서 정의
-void printHP(const Player& p) {
-	cout << "HP : "<< p.hp << endl;
-}
+	// [정적 팩토리 함수]
+	static Monster createNormal() {
+		return Monster(100);
+	}
 
-// 2) Healer 클래스의 멤버 함수 정의 - 24줄에서 Player에게서 권한을 얻고 난 후, 함수를 정의
-void Healer::heal(Player& p) {
-	p.hp += 50;
-}
-
-//friend는 상속되지 않음!
-class C : public Healer {
-	// 즉, Friend 클래스를 상속받은, C는 hp에 접근할 수 없다.
-	// 부모 친구에게 접근할 수 없다
+	static Monster createBoss() {
+		return Monster(500);
+	}
+	// 팩토리 패턴은 "객체를 어떻게 만들지 숨기고, 무엇을 만들지 드러내는 설계"
+	// 공장에 주문 후, 받아오는 패턴. 내부 생산 과정은 몰라도 되는 설계
 };
 
 int main() {
-	Player p(80);
-	printHP(p);		// 1) 전역 friend 함수
+	// 1. 정적 클래스 사용 (인스턴스화X)
+	GameUtil::printLine();
 
-	Healer h;
-	h.heal(p);		// 2) 클래스 멤버 friend 함수
-	printHP(p);
+	// 2. 정적 멤버 함수로 객체 생성
+	Monster m1 = Monster::createNormal();
+	Monster m2 = Monster::createBoss();
+
+	m1.info();
+	m2.info();
+
+	GameUtil::printLine();
+
 	return 0;
 }
