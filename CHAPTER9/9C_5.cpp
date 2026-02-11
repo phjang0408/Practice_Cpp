@@ -1,6 +1,8 @@
 // SOLID-5-DIP
 // 상위 수준 모듈은 하위 수줄 모듈에 의존해서는 안 되며,
 // 상하위 둘 다 '추상 레이어'(인터페이스)에 의존해야 한다.
+
+// 인터페이스를 무조건 쓰라는 것이 아닌, 변경 가능성이 있는 곳에 사욯한다.
 #include <iostream>
 using namespace std;
 
@@ -54,7 +56,6 @@ public:
 		device.Input();
 	}
 };
-
 // 상위 모듈(Computer)은 하위 모듈(Keyboard)를 모른다.
 // Keyboard에서 Mouse로 변경해도, Computer는 수정이 없다.
 // 확장은 열려있고, 수정은 닫혀있다 -> OCP까지 자연스럽게 따라온다.
