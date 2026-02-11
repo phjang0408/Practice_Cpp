@@ -1,46 +1,60 @@
-﻿// 정적멤버 'static'의 활용
+﻿// SOLID-5-DIP
+// 상위 수준 모듈은 하위 수줄 모듈에 의존해서는 안 되며,
+// 상하위 둘 다 '추상 레이어'(인터페이스)에 의존해야 한다.
 #include <iostream>
 using namespace std;
 
-// 정적 클래스(정적 멤버로만 구성된 클래스, 공식용어 X)
-class GameUtil {
+// 잘못된 설계, 하위 모듈을 바꾸면, 상위 모듈을 수정해야 한다.
+class Keyboard{
 public:
-	GameUtil() = delete;	// 객체 생성 금지
-
-	static void printLine() { cout << "---------------" << endl; }
+	void Input() { 
+		cout << "Keyboard Input\n"; 
+	}
 };
-
-class Monster {
+class Computer {
 private:
-	int hp;
-	Monster(int hp) :hp(hp) {}	// 외부 생성을 못하게 private로
+	Keyboard keyboard;	// 상위 모듈(Computer)이 하위 모듈(Keyboard)에 의존
+
 public:
-	void info() { cout << "Monster HP : " << hp << endl; }
-
-	// [정적 팩토리 함수]
-	static Monster createNormal() {
-		return Monster(100);
+	void Use() {
+		keyboard.Input(); 
 	}
-
-	static Monster createBoss() {
-		return Monster(500);
-	}
-	// 팩토리 패턴은 "객체를 어떻게 만들지 숨기고, 무엇을 만들지 드러내는 설계"
-	// 공장에 주문 후, 받아오는 패턴. 내부 생산 과정은 몰라도 되는 설계
 };
 
-int main() {
-	// 1. 정적 클래스 사용 (인스턴스화X)
-	GameUtil::printLine();
+// 올바른 설계
+// 1. 추상 레이어(인터페이스) 만들기
+class IInputDevice {
+public:
+	virtual void Input() = 0;
+	virtual ~IInputDevice() = default;
+};
 
-	// 2. 정적 멤버 함수로 객체 생성
-	Monster m1 = Monster::createNormal();
-	Monster m2 = Monster::createBoss();
+// 2. 구체 클래스는 추상을 구현
+class Advanced_Keyboard : public IInputDevice {
+public:
+	void Input() override {
+		cout << "Keyboard Input\n";
+	}
+};
 
-	m1.info();
-	m2.info();
+class Advanced_Mouse : public IInputDevice {
+public:
+	void Input() override {
+		cout << "Mouse Input\n";
+	}
+};
 
-	GameUtil::printLine();
+//3. 상위 모듈은 추상에 의존
+class Advanced_Computer {
+private:
+	IInputDevice& device;
+public:
+	Advanced_Computer(IInputDevice& d) : device(d){}	// 생성자
+	void Use() {
+		device.Input();
+	}
+};
 
-	return 0;
-}
+// 상위 모듈(Computer)은 하위 모듈(Keyboard)를 모른다.
+// Keyboard에서 Mouse로 변경해도, Computer는 수정이 없다.
+// 확장은 열려있고, 수정은 닫혀있다 -> OCP까지 자연스럽게 따라온다.
