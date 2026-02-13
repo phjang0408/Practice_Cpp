@@ -11,7 +11,7 @@ T data_sum(T operand1, T operand2) {	// 템플릿 정의
 // 컴파일러는 '실제로 사용되는 타입'만 생성한다. 이걸 '템플릿의 인스턴스화'라고 한다
 
 // 함수 템플릿의 특수화
-template<>
+template<>	// 타입선언X
 double data_sum(double operand1, double operand2) {
 	return (int)operand1 + (int)operand2;
 }
