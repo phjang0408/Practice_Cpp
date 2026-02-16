@@ -1,6 +1,8 @@
 #include <iostream>
 
-int main() {
-  std::cout << "fadd" << std::endl;
-  return 0;
+using namespace std;
+
+int main()
+{
+  cout << "hle" << endl;
 }
