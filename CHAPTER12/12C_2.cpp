@@ -1,4 +1,4 @@
-// 11-4 기타 유용한 함수 - 복사 (copy 함수)
+// 복사 (copy 함수)
 #include <iostream>
 #include <vector>
 #include <algorithm>	// copy 정의
