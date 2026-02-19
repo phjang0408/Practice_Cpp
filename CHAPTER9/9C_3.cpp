@@ -1,4 +1,4 @@
-// SOLID-3-LSP
+// SOLID-3-LSP (Liskov Substitution Principle)
 // 자식은 부모를 완전히 대체할 수 있어야 한다.
 #include <iostream>
 using namespace std;
@@ -10,7 +10,7 @@ public:
 		cout << "Flying" << endl;
 	}
 };
-
+// (펭귄은 날 수 없음, 즉 부모를 대체하지 못함)
 class Penguin : public Bird {
 	void Fly() override {
 		throw runtime_error("Penguins can't fly!");

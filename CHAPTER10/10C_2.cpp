@@ -4,9 +4,7 @@ using namespace std;
 
 // 템플릿 선언
 template <typename Type1, typename Type2>	
-
-// 클래스 정의 (템플릿 매개변수를 사용하는 것 외에는, 일반 클래스와 차이 X)
-class data_package {
+class data_package { // 클래스 정의 (템플릿 매개변수를 사용하는 것 외에는, 일반 클래스와 차이X)
 public:
 	data_package(Type1 first, Type2 second) : first(first), second(second){}
 	void print_out_element() {

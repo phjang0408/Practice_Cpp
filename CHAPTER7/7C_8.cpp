@@ -29,11 +29,11 @@ int main() {
 	Player b(30);
 
 	Player c;
-	c = a + b;
+	c = a + b;				// [연산자 '+']
 	cout << c.hp << endl;	// 50 + 30이 나옴
 
 	Player d;
-	d += a;
+	d += a;					// [연산자 '+=']
 	cout << d.hp << endl;	// 0 + 50이 나옴
 	
 	return 0;

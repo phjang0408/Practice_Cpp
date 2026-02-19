@@ -34,7 +34,7 @@ int main() {
 	compare_result(result);	// c가 d보다 작음
 
 	// s1이 더 짧지만, 일치하지 않는 첫 문자가 순서상 늦게 나올 때
-	s1 = "cat";
+	s1 = "cat";		// cat 대신 aat로 하면, -1이 나옴. 앞 문자 같으면, 길이 비교
 	s2 = "apple";
 	result = s1.compare(s2);
 	compare_result(result);	// 길이는 대상이 짧으므로 -1일거 같지만, c가 a보다 크다는 이유로 '1'

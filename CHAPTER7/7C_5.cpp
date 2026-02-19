@@ -1,4 +1,4 @@
-//추가 - 깊은복사
+// 추가 - 깊은복사
 #include <iostream>
 
 class MyBuffer {

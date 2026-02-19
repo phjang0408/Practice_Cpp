@@ -17,7 +17,7 @@ int main() {
 	cout << str1.size() << endl;	// 객체가 차지하는 메모리 크기 반환 - size
 
 	// 검사하기
-	cout << std::boolalpha;			// 논리형 값 -> 알파벳 형식
+	cout << std::boolalpha;			// 논리형 값 -> 알파벳 형식으로 표기하도록 설정
 	cout << str1.empty() << endl;	// 비었으면 1(true), 있으면 0(false)
 
 	// 추가하기

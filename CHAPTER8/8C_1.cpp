@@ -1,5 +1,5 @@
 // 컴포지션과 어그레이션
-// 다중상속의 대안, 
+// 다중상속보다 '결합도'가 낮아 유지.보수에 적합
 #include <iostream>
 using namespace std;
 
@@ -14,7 +14,7 @@ public:
 
 class Car {
 private:
-	Engine engine;	// 컴포지션(값으로 포함)
+	Engine engine;	// [컴포지션] (값으로 포함)
 public:
 	Car() { cout << "Car created\n";	}
 	~Car() { cout << "Car destroyed\n"; }
@@ -27,7 +27,7 @@ public:
 // 2) 어그레이션 : 약한 소유 관계(Person이 Car를 빌려 사용)
 class Person {
 private:
-	Car* car;		// 어그레이션 (포인터로 참조)
+	Car* car;		// [어그레이션] (포인터로 참조)
 public:
 	Person(Car* c) : car(c) {}
 	void goWork() {

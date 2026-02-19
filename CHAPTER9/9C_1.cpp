@@ -1,4 +1,4 @@
-// SOLID-1-SRP
+// SOLID-1-SRP (Single Responsibility Principle)
 // 클래스는 '한 가지 기능'만을 수행하고, '한 가지 이유'로만 변경해야 한다.
 #include <iostream>
 

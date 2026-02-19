@@ -24,7 +24,7 @@ public:
 
 int main() {
 	Player p;
-	p.damage(30).heal(10).damage(5);
+	p.damage(30).heal(10).damage(5);	// [체이닝]
 	p.print();
 
 	return 0;

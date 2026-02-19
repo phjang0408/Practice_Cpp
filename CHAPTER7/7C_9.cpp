@@ -1,5 +1,5 @@
-// friend 키워드
-// "다른 클래스/함수에게, 내 private,protected [접근 권한]을 준다.
+// friend 키워드 - 클래스와 함수
+// "다른 클래스/함수에게, 내 private, protected [접근 권한]을 준다.
 // friend 함수에는 '전역으로 설정하기'와 '다른 클래스에게 열여주기' 두 가지가 있다.
 #include <iostream>
 using namespace std;

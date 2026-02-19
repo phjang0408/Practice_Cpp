@@ -5,7 +5,7 @@ using namespace std;
 
 // 함수 템플릿 선언과 정의
 template <typename T>					// 템플릿 선언, T는 '템플릿 매개변수'
-T data_sum(T operand1, T operand2) {	// 템플릿 정의
+T data_sum(T operand1, T operand2) {	// 템플릿 정의(선언 바로 뒤에 반드시 있어야 함.)
 	return operand1 + operand2;
 }
 // 컴파일러는 '실제로 사용되는 타입'만 생성한다. 이걸 '템플릿의 인스턴스화'라고 한다

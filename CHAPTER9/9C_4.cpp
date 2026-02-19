@@ -1,5 +1,6 @@
-// SOLID-4-ISP
+// SOLID-4-ISP (Interface Segregation Principle)
 // 클라이언트는 사용하지 않는 인터페이스에 의존하면 안 된다.
+// 즉, 인터페이스를 구현할 때, 구체적인 역할, 작은 사이즈로 분리해야 한다.
 #include <iostream>
 using namespace std;
 
