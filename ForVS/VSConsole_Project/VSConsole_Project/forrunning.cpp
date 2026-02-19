@@ -1,35 +1,46 @@
-﻿// 순차 컨테이너 - 2.벡터
-// 추가 - 정적 반복자와 리버스 반복자
+﻿// 순차 컨테이너 - 4. 덱(deque)
+// vector는 하나의 메모리 블록에 저장
+// deque 컨테이너는 '여러 개의 메모리 블록을 나눠서 저장'
+// 저장 공간이 부족하면, 일정 크기의 새로운 메모리 블럭을 만들어 연결. => '복사 저장' 발생하지 않음
 #include <iostream>
-#include <vector>
+#include <deque>
 
 using namespace std;
 
 int main() {
-	vector <int> vec = { 10,20,30,40,50 };
+	deque<int> myDeque;	// 선언
 
-	// 1. 정적 반복자 const_iterator
-	// const_iterator는 'cbegin'과 'cend'함수로 얻을 수 있다.
-	cout << "[정적 반복자 활용]" << endl;
-	vector<int>::const_iterator const_it = vec.cbegin();	//cbegin함수
-	cout << *const_it << endl;	
-	
-	++const_it;
-	cout << *const_it << endl;
+	// 1. 추가
+	myDeque.push_back(2);	// push_back
+	myDeque.push_back(3);
+	myDeque.push_front(1);	// push_front
+	myDeque.push_front(0);
 
-	const_it = vec.cend();		// cend함수
-	--const_it;
-	cout << *const_it << endl << endl;
-
-	// 2.리버스 반복자
-	// reverse_iterator는 'rbegin'과 'rend'함수로 얻을 수 있다.
-	// rbegin은 가장 마지막 위치, 증가 연산은 '이전 위치' 
-	// => 그냥 begin, end와 반대!, 연산 결과도 반대!
-	cout << "[리버스 반복자 활용]" << endl;
-	vector<int>::reverse_iterator rev_it = vec.rbegin();	// rbegin함수
-	for (rev_it; rev_it != vec.rend(); rev_it++) {			// rend 함수
-		cout << *rev_it << endl;
+	// 출력
+	cout << "리스트 출력 : ";
+	for (const int& element : myDeque) {
+		cout << element << " ";
 	}
+	cout << endl;
+
+	// 2. 제거
+	myDeque.pop_back();		// pop_back
+	myDeque.pop_front();		// pop_front
+
+	// 출력
+	cout << "리스트 출력 : ";
+	for (const int& element : myDeque) {
+		cout << element << " ";
+	}
+	cout << endl;
+
+	// 3. 확인
+	cout << "리스트 크기 : " << myDeque.size() << endl;		// size (원소 개수)
+	cout << "리스트가 비었는가 : " << myDeque.empty() << endl;	// empty (비었는지 확인)
+
+	// 4. 접근
+	cout << "deque 첫 번째 원소 : " << myDeque.front() << endl;
+	cout << "deque 마지막 원소 : " << myDeque.back() << endl;
 
 	return 0;
 }
