@@ -1,33 +1,42 @@
-﻿// 연관 컨테이너 - 1. 세트(set)
-// 데이터 빠른 저장 및 검색에 유용 (O(logn)이나 O(1))
-// 중복값 허용하지 않음
+﻿// 연관 컨테이너 - 2. 맵(map)
+// 키-값 쌍을 저장하는 컨테이너
+// map은 중복을 허용하지 않음, multimap은 중복 허용
 #include <iostream>
-#include <set>
+#include <string>
+#include <map>
 
 using namespace std;
 int main() {
-	set<int> mySet;
+	map<string, int> scores;	// 정의
 
-	// 값 삽입
-	mySet.insert(5);
-	mySet.insert(8);
-	mySet.insert(2);
+	// 키-값 쌍 삽입 및 삭제
+	scores.insert({ "Alice",90 });			// 다양한 방법의 삽입
+	scores.insert(make_pair("Jane", 80));
+	scores["Tom"] = 30;
+	scores.insert(make_pair("Alice", 65));	// 중복이 되지 않아 무시됨
 
-	// 검색 - 확인
-	// find로 검색, 해당 값이 없으면, set::end를 반환함
-	if (mySet.find(5) != mySet.end()) {
-		cout << "5는 저장되지 않음" << endl;
+	// 크기 출력
+	cout << "map 크기 : " << scores.size() << endl;
+
+	// 특정 키에 해당하는 값 검색
+	auto it = scores.find("Jane");
+	if (it != scores.end()) {
+		cout << "Jane의 점수 : " << it->second << endl;
 	}
-
-	// 검색 - 순회
-	for (auto it = mySet.begin(); it != mySet.end(); ++it) {
-		cout << *it << " ";
+	else {
+		cout << "Jane의 점수는 저장되지 않음" << endl;
 	}
 	cout << endl;
 
-	// 크기
-	int size = mySet.size();
-	cout << "크기는  : " << size << endl;
+	// 특정 키에 해당하는 키-값 제거
+	scores.erase("Jane");
+	cout << "Jane 제거 후 map 크기 : " << scores.size() << endl;
+
+	// 순회하여 출력
+	cout << "모든 원소 출력 " << endl;
+	for (const auto& pair : scores) {
+		cout << pair.first << " - " << pair.second << endl;
+	}
 
 	return 0;
 }

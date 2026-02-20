@@ -9,6 +9,7 @@ int main() {
 	vector <int> vec = { 10,20,30,40,50 };
 
 	// 1. 정적 반복자 const_iterator
+	
 	// const_iterator는 'cbegin'과 'cend'함수로 얻을 수 있다.
 	cout << "[정적 반복자 활용]" << endl;
 	vector<int>::const_iterator const_it = vec.cbegin();	//cbegin함수
@@ -22,6 +23,7 @@ int main() {
 	cout << *const_it << endl << endl;
 
 	// 2.리버스 반복자
+
 	// reverse_iterator는 'rbegin'과 'rend'함수로 얻을 수 있다.
 	// rbegin은 가장 마지막 위치, 증가 연산은 '이전 위치' 
 	// => 그냥 begin, end와 반대!, 연산 결과도 반대!
