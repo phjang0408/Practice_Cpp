@@ -31,10 +31,10 @@ int main() {
 
 	print_vector_all(vec4);
 
-	// insert와 erase - 특정 index에 삽입/삭제 - O(n) 소요
-	// 매개변수는 iterator(반복자)임.
-	// 따라서 insert(3, 25)나 erase(3)은 안 됨 (int형 != iterator 객체형)
-
+	/* insert와 erase - 특정 index에 삽입/삭제 - O(n) 소요
+	 매개변수는 iterator(반복자)임.
+	 따라서 insert(3, 25)나 erase(3)은 안 됨 (int형 != iterator 객체형) */
+	 
 	vec4.insert(vec4.begin() + 3, 25);	// vec[0+3] = vec[3] '앞'에 25추가
 	vec4.erase(vec4.begin() + 3);		// vec[3]을 삭제
 

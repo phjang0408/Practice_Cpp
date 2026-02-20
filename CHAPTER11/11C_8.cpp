@@ -11,7 +11,7 @@ int main() {
 	cout << "rand함수 : " << rand() << endl;		// 2. rand함수
 
 
-	// <chrono>
+	// <chrono> -> 나노초 시간연산 가능 -> rand의 범위를 넘어선 난수 생성 가능
 	auto curTime = chrono::system_clock::now();
 	auto duration = curTime.time_since_epoch();
 	auto millis = chrono::duration_cast<chrono::milliseconds>(duration).count();
