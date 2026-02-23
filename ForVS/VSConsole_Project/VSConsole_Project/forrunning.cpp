@@ -1,30 +1,77 @@
-﻿// 컨테이너 어댑터 - 2. 큐(quieue)
-// 내부적으로 deque(덱) 사용
-//  순차적 이벤트 처리, 너비 우선 탐색, 캐시 구현, 멀티스레딩 동기화
-#include <iostream>
-#include <queue>
+﻿#include <iostream>
+#include <utility>
 using namespace std;
+
+class myClass {
+public:
+    int* data;
+
+    // 기본 생성자
+    myClass() : data(new int(0)) {
+        cout << "기본 생성자\n";
+    }
+
+    // 값 지정 생성자
+    myClass(int value) : data(new int(value)) {
+        cout << "값 생성자\n";
+    }
+
+    // 복사 생성자 (깊은 복사)
+    myClass(const myClass& other) {
+        data = new int(*other.data);
+        cout << "복사 생성자\n";
+    }
+
+    // 이동 생성자
+    myClass(myClass&& other) noexcept : data(other.data) {
+        other.data = nullptr;
+        cout << "이동 생성자\n";
+    }
+
+    // 복사 대입 연산자
+    myClass& operator=(const myClass& other) {
+        cout << "복사 대입\n";
+        if (this != &other) {
+            delete data;
+            data = new int(*other.data);
+        }
+        return *this;
+    }
+
+    // 이동 대입 연산자
+    myClass& operator=(myClass&& other) noexcept {
+        cout << "이동 대입\n";
+        if (this != &other) {
+            delete data;
+            data = other.data;
+            other.data = nullptr;
+        }
+        return *this;
+    }
+
+    // 소멸자
+    ~myClass() {
+        delete data;
+        cout << "소멸자\n";
+    }
+};
+
 int main() {
-	queue<int> myQueue;
+    cout << "---- a 생성 ----\n";
+    myClass a(10);
 
-	// 1. push - 삽입
-	myQueue.push(1);
-	myQueue.push(2);
-	myQueue.push(3);
+    cout << "\n---- b 생성 ----\n";
+    myClass b(20);
 
-	// 2. front, back - 조회
-	cout << "큐의 맨 앞 : " << myQueue.front() << endl;
-	cout << "큐의 맨 뒤 : " << myQueue.back() << endl;
+    cout << "\n---- a = b ----\n";
+    a = b;                // 복사 대입
 
-	// 3. pop - 삭제
-	myQueue.pop();
+    cout << "\n---- a = std::move(b) ----\n";
+    a = std::move(b);     // 이동 대입
 
-	cout << "pop후의 큐의 맨 앞 : " << myQueue.front() << endl;
-	cout << "pop후의 큐의 맨 뒤 : " << myQueue.back() << endl;
+    cout << "\n---- c 생성 (이동 생성자) ----\n";
+    myClass c = myClass(30); // 이동 생성자 (또는 최적화)
 
-	// 4. empty, size
-	cout << "queue의 크기 : " << myQueue.size() << endl;
-	cout << "큐가 비었나요? : " << (myQueue.empty() ? "yes" : "No") << endl;
-
-	return 0;
+    cout << "\n---- 프로그램 종료 ----\n";
+    return 0;
 }
