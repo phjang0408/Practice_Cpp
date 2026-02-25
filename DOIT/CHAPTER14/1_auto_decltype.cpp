@@ -1,8 +1,8 @@
-// 
+// auto와 decltype
 #include <iostream>
 using namespace std;
 
-// auto + decltype
+// 3. auto + decltype
 // 반환값의 형식이 : auto 이면, '후행반환형식'으로 decltype를 지정해야 한다.
 template <typename T, typename U>
 auto add(T a, U b) -> decltype(a + b) {	// 타입을 알고자 하는 식 : a + b
