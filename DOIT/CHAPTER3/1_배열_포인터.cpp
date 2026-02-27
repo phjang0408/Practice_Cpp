@@ -1,4 +1,4 @@
-//배열과 포인터의 차이
+// 배열과 포인터의 차이
 #include <iostream>
 
 using namespace std;
