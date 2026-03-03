@@ -23,11 +23,11 @@ public:
 int main() {
 	Machine* machinePtr = new Printer();
 
-	// 1. 업캐스트
+	// 1. 업캐스트 : 자식 -> 부모
 	Machine* up = dynamic_cast<Machine*>(machinePtr);
 	up->TurnOn();
 
-	// 2. 다운캐스트 (런타임에 검사를 수행)
+	// 2. 다운캐스트 (런타임에 검사를 수행) : 부모 -> 자식
 	Printer* down = dynamic_cast<Printer*>(machinePtr);
 
 	if (down) {		// 캐스팅 실패 시, nullptr를 반환하기에, 이런 처리가 가능하다.

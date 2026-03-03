@@ -1,4 +1,6 @@
 // 1. static_cast
+// 기본적 형 변한, 일반 변수, 열거형(enum), 클래스 업캐스팅에 활용
+// 다운캐스트는 검사하지 않으므로, 위험할 수 있음.
 #include <iostream>
 #include <cstdio>
 using namespace std;
