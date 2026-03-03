@@ -1,4 +1,4 @@
-// constexpr 생성자 -> 컴파일 타임에, [상수인 객체]를 만드는 함수\
+// constexpr 생성자 -> 컴파일 타임에, [상수인 객체]를 만드는 함수
 // class에서는, constexpr [생성자]로 만든 객체의, constexpr [멤버 함수]만이 constexpr이다.
 #include <iostream>
 using namespace std;
