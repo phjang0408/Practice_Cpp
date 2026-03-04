@@ -1,17 +1,15 @@
-﻿#include <iostream>
+﻿// qo
+#include <iostream>
 using namespace std;
 int main(){
 	std::ios_base::sync_with_stdio(false);
-	cin.tie(NULL);	cout.tie(NULL);
-
-	bool check[42] = {0,};
-	int num, result = 0;
-	for (int i = 0; i < 10; i++) {
-		cin >> num;
-		check[num % 42] = true;
+	cin.tie(NULL); cout.tie(NULL);
+	int n, max_num = -1000000, min_num = 1000000, input;
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cin >> input;
+		if (input > max_num)	max_num = input;
+		if (input < min_num)	min_num = input;
 	}
-	for (bool b : check) {
-		if (b)	result++;
-	}
-	cout << result;
+	cout << min_num << " " << max_num;
 }
