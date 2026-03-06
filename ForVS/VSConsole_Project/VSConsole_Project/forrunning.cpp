@@ -1,23 +1,22 @@
-﻿// 4. 이진 탐색
-// find 함수는 [선형 검색]을 기반으로 동작 : 처음부터 끝까지 탐색 : O(n)
-// 이때, [정렬된 범위]에서 특정 값을 찾는 '이진 탐색'을 사용 : O(log n)
-// 정렬 되어 있어야 함!
-#include <iostream>
-#include <vector>
-#include <algorithm>
+﻿#include <iostream>
+#include <string>
 using namespace std;
 int main() {
-	vector<int> numbers = { 8,3,1,7,4,5,9,2,6 };
-	
-	// 1. 정렬 수행
-	sort(numbers.begin(), numbers.end());
-
-	int target = 4;	// 4 찾기
-
-	// 2. 이진 탐색
-	bool found = binary_search(numbers.begin(), numbers.end(), target);
-
-	found ? cout << "Found!" : cout << "Not Found!";
-
+	std::ios_base::sync_with_stdio(false);
+	cin.tie(NULL); cout.tie(NULL);
+	int count = 0;
+	string s;
+	getline(cin, s);
+	if (s == " ") {		// 문자열이 공백으로만 이루어진 경우
+		cout << 0;
+	}
+	else {
+		for (int i = 1; i < s.size() - 1; i++) {
+			if (s[i] == ' ') {
+				count++;
+			}
+		}
+		cout << count + 1;
+	}
 	return 0;
 }
