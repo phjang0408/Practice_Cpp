@@ -1,6 +1,7 @@
 // 연관 컨테이너 - 2. 맵(map)
 // 키-값 쌍을 저장하는 컨테이너
-// map은 중복을 허용하지 않음, multimap은 중복 허용
+// map은 '키'의 중복을 허용하지 않음, 값은 중복되어도 됨
+// multimap은 중복 허용
 #include <iostream>
 #include <string>
 #include <map>
@@ -28,7 +29,7 @@ int main() {
 	}
 	cout << endl;
 
-	// 특정 키에 해당하는 키-값 제거
+	// 특정 키에 해당하는 {키-값} 제거
 	scores.erase("Jane");
 	cout << "Jane 제거 후 map 크기 : " << scores.size() << endl;
 

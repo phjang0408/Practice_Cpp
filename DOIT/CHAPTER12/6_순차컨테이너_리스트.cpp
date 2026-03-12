@@ -1,6 +1,7 @@
 // 순차 컨테이너 - 3. 리스트
+// 이중 연결 리스트 구조
 // 데이터가 '노드'라 불리는 개별 객체(다음 노드를 가리키는 포인터를 포함)
-// 삽입/삭제에 효율적
+// 삽입/삭제에 효율적{O(1)}, 탐색은 비효율적{O(n)} - 순차적으로 노드를 타고 가기에
 #include <iostream>
 #include <list>
 
@@ -14,7 +15,7 @@ int main() {
 	myList.push_back(3);
 	myList.push_front(1);	// push_front
 	myList.push_front(0);
-
+	
 	// 출력
 	cout << "리스트 출력 : ";
 	for (const int& element : myList) {

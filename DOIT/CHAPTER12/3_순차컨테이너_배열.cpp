@@ -16,8 +16,8 @@ int main() {
 	cout << endl;
 
 	// 배열 크기 출력
-	cout << size(myArray) << endl;
-	cout << sizeof(myArray) << endl;	// size와 sizeof는 다름
+	cout << size(myArray) << endl;		// size = index 개수
+	cout << sizeof(myArray) << endl;	// sizeof = index * 자료형 크기
 
 	// 접근, 변경
 	myArray[0] = 10;

@@ -34,7 +34,9 @@ int main() {
 
 	// 5. count -> 개수 확인 + count_if
 	cout << "Numbers of 4 : " << count(myVector.begin(), myVector.end(), 4) << endl;
-
+	cout << "(count_if)Numbers of > 3 : " << 
+	count_if(myVector.begin(), myVector.end(), [](int n){return n > 3;}) << endl;
+	
 	// 6. for_each -> 범위 요소들에, 특정동작 수행
 	std::for_each(myVector.begin(), myVector.end(), [](int& x) {x *= 2; });
 	print_Vector(myVector);

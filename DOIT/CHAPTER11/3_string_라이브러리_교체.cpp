@@ -8,7 +8,7 @@ int main() {
 	cout << "Original string : " << str << endl;
 
 	//문자열 일부분 교체
-	str.replace(7, 5, "C++");	// 교체 시작 index, 교체할 길이, 교체할 문자열
+	str.replace(7, 5, "C++");	// 교체 시작 index, 삭제할 길이, 삽입할 문자열
 
 	cout << "Replaced string : " << str << endl;
 
