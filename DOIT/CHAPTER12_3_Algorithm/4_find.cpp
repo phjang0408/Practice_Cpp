@@ -21,15 +21,15 @@ int main() {
 	cin >> target;
 
 	// 1. find 함수
-	vector<int>::iterator it = find(numbers.begin(), numbers.end(), target);
-	if (it != numbers.end()) {
+	vector<int>::iterator it = find(numbers.begin(), numbers.end(), target);	// 찾으면, 해당 위치 반복자 반환
+	if (it != numbers.end()) {													// 못 찾으면, end() 위치 반복자 반환
 		cout << "위치한 index : " << distance(numbers.begin(), it) << '\n';
 	}
 	else {
 		cout << "찾을 수 없음" << '\n';
 	}
 	// 2. find는 operator==을 사용하기에
-    // 사용자 정의 타입 객체를 비교하려면, 연산자 오버로딩
+    // 사용자 정의 타입 객체를 비교하려면, 연산자 오버로딩을 해 줘야 한다(12번 줄)
 	vector<my_class> objects = {
 		{1,"one"},
 		{2,"two"},
