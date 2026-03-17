@@ -1,21 +1,31 @@
 ﻿#include <iostream>
-#include <array>
 using namespace std;
+
 int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);	cout.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-	int n, t, p;
-	int T_Count = 0;
-	cin >> n;
-	array<int, 6> sizeArray;
+    int N;
+    cin >> N;
 
-	for (int& i : sizeArray) {
-		cin >> i;
-	}
-	cin >> t >> p;
-	for (int& i : sizeArray) {
-		T_Count += (i + t - 1) / t;
-	}
-	cout << T_Count << '\n' << n / p << " " << n % p;
+    bool found = false;
+
+    for (int i = 1; i < N; i++) {
+        int temp = i;
+        int num = i;
+
+        while (temp > 0) {
+            num += temp % 10;
+            temp /= 10;
+        }
+
+        if (num == N) {
+            cout << i;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+        cout << 0;
 }
