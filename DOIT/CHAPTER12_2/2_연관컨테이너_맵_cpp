@@ -11,7 +11,7 @@ int main() {
 	map<string, int> scores;	// 정의
 
 	// 키-값 쌍 삽입 및 삭제
-	scores.insert({ "Alice",90 });			// 다양한 방법의 삽입
+	scores.insert({ "Alice",90 });			// 다양한 방법의 삽입 [insert는 앞에 삽입]
 	scores.insert(make_pair("Jane", 80));
 	scores["Tom"] = 30;
 	scores.insert(make_pair("Alice", 65));	// 중복이 되지 않아 무시됨
