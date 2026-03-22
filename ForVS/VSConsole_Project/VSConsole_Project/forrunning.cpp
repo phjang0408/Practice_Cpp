@@ -1,31 +1,30 @@
 ﻿#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
-
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
 
-    int N;
-    cin >> N;
+	int n;
+	cin >> n;
+	vector<string> vec;
+	for (int i = 0; i < n; i++) {
+		string s;
+		cin >> s;
+		vec.push_back(s);
+	}
 
-    bool found = false;
+	sort(vec.begin(), vec.end(), [](const string& a, const string& b) {
+		if (a.length() != b.length()) {
+			return a.length() < b.length();	// 길이 우선 비교
+		}
+		return a < b;	// 길이가 같다면 사전순
+		});
 
-    for (int i = 1; i < N; i++) {
-        int temp = i;
-        int num = i;
+	vec.erase(std::unique(vec.begin(), vec.end()), vec.end());
 
-        while (temp > 0) {
-            num += temp % 10;
-            temp /= 10;
-        }
-
-        if (num == N) {
-            cout << i;
-            found = true;
-            break;
-        }
-    }
-
-    if (!found)
-        cout << 0;
+	for (auto x : vec) {
+		cout << x << '\n';
+	}
 }
