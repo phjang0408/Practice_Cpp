@@ -5,7 +5,7 @@ bool IsNum(const int& x) {
 	if (x == 2)	return true;
 	if (x % 2 == 0)	return false;
 
-	for (int i = 2; i * i <= x; i+=2) {
+	for (int i = 2; i * i <= x; i++) {
 		if (x % i == 0) {
 			return false;
 		}
