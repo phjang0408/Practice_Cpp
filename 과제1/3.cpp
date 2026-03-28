@@ -2,11 +2,15 @@
 using namespace std;
 int main()
 {
-    int a, b, c, d, e;
+    int n, sum = 0;
     cout << "정수 5개 입력: ";
-    cin >> a >> b >> c >> d >> e;
-    int sum = a + b + c + d + e;
+    for(int i=0;i<n;i++){
+        cin >> n;
+        sum += n;
+    }
     cout << "총합: " << sum << endl;
-    cout << "평균: "  << float(sum) / 5.0 << endl;
+    
+    float avg = float(sum) / 5;
+    cout << "평균: "  << avg << endl;
     return 0;
 }
