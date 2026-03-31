@@ -18,4 +18,6 @@ int main()
     else{
         cout << "0으로 나눌 수 없습니다.";
     }
+
+    return 0;
 }

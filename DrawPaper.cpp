@@ -3,11 +3,19 @@
 using namespace std;
 int main()
 {
-    int a, b, c, d, e;
-    cout << "정수 5개 입력: ";
-    cin >> a >> b >> c >> d >> e;
-    int sum = a + b + c + d + e;
-    cout << "총합: " << sum << endl;
-    cout << "평균: "  << float(sum) / 5.0 << endl;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, cnt = 1;
+    cin >> n;
+    n -= 1;
+    for (int i = 1; n > 0; i++)
+    {
+        if (n - i * 6 >= 0)
+        {
+            cnt++;
+            n = n - (i * 6);
+        }
+    }
+    cout << cnt;
     return 0;
 }
