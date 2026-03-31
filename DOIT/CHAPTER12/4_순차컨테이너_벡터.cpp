@@ -24,14 +24,14 @@ int main() {
 
 	print_vector_all(vec3);
 
-	// 접근 및 추가
+	// 1. 접근 및 추가
 	vec4[1] = 10;
 	vec4.at(1) = 20;	// at함수 사용
 	vec4.push_back(5);	// 맨 뒤에 5 추가
 
 	print_vector_all(vec4);
 
-	/* insert와 erase - 특정 index에 삽입/삭제 - O(n) 소요
+	/* 2. insert와 erase - 특정 index에 삽입/삭제 - O(n) 소요
 	 매개변수는 iterator(반복자)임.
 	 따라서 insert(3, 25)나 erase(3)은 안 됨 (int형 != iterator 객체형) 
 	 => 그렇지만, 
