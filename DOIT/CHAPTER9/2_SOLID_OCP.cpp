@@ -11,7 +11,6 @@ class Wrong_DamageCalculator {
 		return 0;
 	}
 };
-
 // 올바른 설계
 class Character {
 public:
