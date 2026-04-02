@@ -16,7 +16,7 @@ int main()
     // 구간합 -> 1 3 6 7 9
     // 나머지 -> 1 0 0 1 0
     vector<long long> cnt(m, 0); // index = 나머지, index의 값 = 등장횟수
-    cnt[0] = 1;                  // prefix sum[0] = 0이므로, 나머지 0이 1개 존재
+    cnt[0] = 1;                  // 초기값, 0 % m == 0이라서, index 0에 1더해줌
 
     long long part_sum = 0, answer = 0;
     for (int i = 0; i < n; i++)
@@ -25,11 +25,9 @@ int main()
         cin >> call;
         part_sum += call;
 
-        int r = part_sum % m;
+        int r = part_sum % m;   // r은 구간합의 나머지
 
-        // 이전에 나머지가 r인 prefix sum이 cnt[r]개 있었다면,
-        // 그 각각과 현재 위치가 쌍을 이루어 m의 배수 구간이 됨
-        answer += cnt[r];
+        answer += cnt[r];       // 이 나머지를 index로,
         cnt[r]++;
     }
 

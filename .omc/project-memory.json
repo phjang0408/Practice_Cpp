@@ -1,0 +1,156 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1775134462895,
+  "projectRoot": "/Users/dnln/Desktop/Code/Practice_Cpp",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "DOIT": {
+      "path": "DOIT",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1775134462875,
+      "keyFiles": []
+    },
+    "ForVS": {
+      "path": "ForVS",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1775134462875,
+      "keyFiles": []
+    },
+    "Old_Version": {
+      "path": "Old_Version",
+      "purpose": null,
+      "fileCount": 9,
+      "lastAccessed": 1775134462876,
+      "keyFiles": [
+        "6C_0.cpp",
+        "ExClass.cpp",
+        "MonsterClass.cpp",
+        "c1_1.cpp",
+        "c1_2.cpp"
+      ]
+    },
+    "Practice_Problems": {
+      "path": "Practice_Problems",
+      "purpose": null,
+      "fileCount": 38,
+      "lastAccessed": 1775134462877,
+      "keyFiles": [
+        "BJ_10178.cpp",
+        "BJ_10250.cpp",
+        "BJ_10773.cpp",
+        "BJ_10773_v2.cpp",
+        "BJ_10818.cpp"
+      ]
+    },
+    "과제1": {
+      "path": "과제1",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1775134462877,
+      "keyFiles": [
+        "1.cpp",
+        "2.cpp",
+        "3.cpp",
+        "4.cpp"
+      ]
+    },
+    "알고리즘": {
+      "path": "알고리즘",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1775134462877,
+      "keyFiles": [
+        "로드맵.md",
+        "문자열_split함수",
+        "문자열_split함수.cpp"
+      ]
+    },
+    "형변환": {
+      "path": "형변환",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1775134462878,
+      "keyFiles": [
+        "1_static_cast.cpp",
+        "2_dynamic_cast.cpp",
+        "3_reinterpret_cast.cpp",
+        "4_const_cast.cpp"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "알고리즘/01_오리엔테이션_C++기초/unique_중복제거.cpp",
+      "accessCount": 1,
+      "lastAccessed": 1775134591605,
+      "type": "file"
+    },
+    {
+      "path": "알고리즘/01_오리엔테이션_C++기초/포인터_주소역참조.cpp",
+      "accessCount": 1,
+      "lastAccessed": 1775134595028,
+      "type": "file"
+    },
+    {
+      "path": "알고리즘/01_오리엔테이션_C++기초/재귀함수.cpp",
+      "accessCount": 1,
+      "lastAccessed": 1775134598026,
+      "type": "file"
+    },
+    {
+      "path": "알고리즘/01_오리엔테이션_C++기초/순열_next_permutation.cpp",
+      "accessCount": 1,
+      "lastAccessed": 1775134601890,
+      "type": "file"
+    },
+    {
+      "path": "알고리즘/01_오리엔테이션_C++기초/조합_Combination.cpp",
+      "accessCount": 1,
+      "lastAccessed": 1775134604681,
+      "type": "file"
+    },
+    {
+      "path": "알고리즘/02_복잡도와_구간연산/누적합_PrefixSum.cpp",
+      "accessCount": 1,
+      "lastAccessed": 1775134607626,
+      "type": "file"
+    },
+    {
+      "path": "알고리즘/03_그래프이론과_탐색/인접행렬_인접리스트.cpp",
+      "accessCount": 1,
+      "lastAccessed": 1775134610798,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
