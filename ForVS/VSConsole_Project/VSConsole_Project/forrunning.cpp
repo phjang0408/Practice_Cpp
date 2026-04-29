@@ -1,49 +1,67 @@
 ﻿#include <iostream>
+#include <iomanip>
 using namespace std;
 
-int main()
-{
-    int start, end;
-    int count = 0;
+class Student {
+private:
+    string Name;
+    int grades[3];
+    double avg_grade;
+public:
+    void SetName(string& name) { this->Name = name; }
+    void SetGrade(int g1, int g2, int g3) {
+        grades[0] = g1;
+        grades[1] = g2;
+        grades[2] = g3;
+    }
+    void SetAvg() {
+        int tmp = 0;
+        for (int i = 0; i < 3; i++) tmp += grades[i];
+        avg_grade = (double)tmp / 3.0;
+    }
+    const string GetName() { return Name; }
+    const int* GetGrades() { return grades; }
+    const double Get_avg_grade() { return avg_grade; }
+};
 
-    do
-    {
-        // 시작 단과 끝 단을 입력받는다.
-        cout << "시작 단 입력: ";
-        cin >> start;
-        cout << "끝 단 입력: ";
-        cin >> end;
+int main() {
+    Student myStudents[3];
 
-        bool Is_Valid = start > end || start < 2 || end > 9;
-        // 시작 단이 끝 단보다 크면 "잘못된 입력입니다."를 출력하고 다시 입력받는다.
-        if (start > end || start < 2 || end > 9)
-            cout << "잘못된 입력입니다." << endl;
+    for (int i = 0; i < 3; i++) {
+        cout << "[학생 " << i + 1 << " 정보 입력]" << endl;
 
-    } while (start > end || start < 2 || end > 9);
+        cout << "이름: ";
+        string name;
+        cin >> name;
+        myStudents[i].SetName(name);
 
-
-    for (int dan = start; dan <= end; dan++)
-    {
-        cout << "[" << dan << "단] (홀수 결과만, 50 초과 시 중단)" << endl;
-
-        for (int i = 1; i <= 9; i++)
-        {
-            int result = dan * i;
-
-            if (result % 2 == 0)
-                continue;
-
-            if (result > 50)
-            {
-                cout << "-> " << dan << "단 중단 (50 초과)" << endl;
-                break;
+        int g[3];
+        for (int j = 0; j < 3; j++) {
+            cout << "과목 " << j + 1 << " 점수: ";
+            cin >> g[j];
+            if (g[j] < 0 || g[j] > 100) {
+                cout << "유효하지 않은 점수입니다." << endl;
+                j--;
             }
-
-            cout << dan << " x " << i << " = " << result << endl;
-            count++;
         }
+        myStudents[i].SetGrade(g[0], g[1], g[2]);
+        myStudents[i].SetAvg();
     }
 
-    // 전체 출력이 끝나면 출력된 곱셈 결과의 총 개수를 출력한다
-    cout << "출력된 곱셈 결과 총 개수: " << count << endl;
+    cout << "\n======= 성적 결과 =======\n";
+
+    int topIdx = 0;
+    for (int i = 0; i < 3; i++) {
+        const int* g = myStudents[i].GetGrades();
+        cout << fixed << setprecision(2);
+        cout << "이름: " << myStudents[i].GetName()
+            << " | 점수: " << g[0] << ", " << g[1] << ", " << g[2]
+            << " | 평균: " << myStudents[i].Get_avg_grade() << "\n";
+
+        if (myStudents[i].Get_avg_grade() > myStudents[topIdx].Get_avg_grade())
+            topIdx = i;
+    }
+
+    cout << "최고 평균 학생: " << myStudents[topIdx].GetName()
+        << " (" << myStudents[topIdx].Get_avg_grade() << ")\n";
 }
