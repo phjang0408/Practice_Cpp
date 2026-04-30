@@ -20,6 +20,7 @@ public:
 	}
 
 	// [요구사항] 가속 함수 (virtual로 자식 클래스에서 override)
+	// 순수 가상함수로 구현하여, Vehicle 클래스는 추상 클래스가 되도록 했습니다.
 	virtual void accelerate() = 0;
 
 	// 정지 메서드

@@ -28,7 +28,7 @@ int main() {
 	for (int i = 0; i < 4; i++) {
 		cout << names[i] << ": " << std::boolalpha <<
 			(bool)((permission & mask) != 0) << endl; // 명시적 형 변환 (bool)
-		mask <<= 1; // 마스크 좌측 시프트
+		mask <<= 1; // 마스크 좌측 시프트로, 권한 판별
 	}
 	// [요구사항] 10진수와 2진수(bitset<8>)로 최종 권한값 출력
 	cout << "권한 값: " << permission << " (" << bitset<8>(permission) << ")" << endl;

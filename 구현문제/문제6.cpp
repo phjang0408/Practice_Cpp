@@ -1,19 +1,34 @@
 #include <iostream>
 #include <string>
-#include <vector>
 using namespace std;
 
-// [요구사항] 부모 클래스 MenuItem
+/* [설계] 클래스는 데이터 처리(throw)만 담당하고, 
+상호작용(UI)은 main이 담당하도록 역할을 분리했습니다.
+
+예외는 "문제를 발견한 곳(=클래스 내부)"에서 던지고(throw),
+"흐름을 제어하는 곳(=main)"에서 잡아(catch) 처리합니다. */
+
+// [요구사항] 부모 클래스 MenuItem (추상 클래스)
 class MenuItem {
 protected:
 	string name;			// 메뉴 이름
 	int price;				// 가격
 
 public:
+	MenuItem() : name(""), price(0) {}
 	MenuItem(string n, int p) : name(n), price(p) {}
 
 	string get_name() const { return name; }
 	int get_price() const { return price; }
+
+	// [캡슐화] 유효성 검사를 통해 price 변경 제어
+	void set_price(int p) {
+		if (p <= 0) throw p;
+		price = p;
+	}
+
+	// [추상화] 순수 가상 함수 — 자식 클래스에서 반드시 구현
+	virtual void display() const = 0;
 
 	virtual ~MenuItem() {}
 };
@@ -24,12 +39,15 @@ private:
 	string category;		// 카테고리 (커피, 음료, 음식 등)
 
 public:
+	CafeItem() : MenuItem(), category("") {}
 	CafeItem(string n, int p, string cat)
-		: MenuItem(n, p), category(cat) {}
+		: MenuItem(n, p), category(cat) {
+	}
 
 	string get_category() const { return category; }
 
-	void print_info() const {
+	// [상속 + 다형성] 부모의 순수 가상 함수를 override
+	void display() const override {
 		cout << "[" << category << "] " << name << " - " << price << "원" << endl;
 	}
 };
@@ -37,63 +55,54 @@ public:
 // [요구사항] CafeManager 클래스
 class CafeManager {
 private:
-	vector<CafeItem> menu_list;		// 메뉴 목록
-	int balance;					// 사용자 잔액
-	vector<string> order_history;	// 주문 내역
+	static const int MAX_MENU = 6;
+	static const int MAX_HISTORY = 100;
+
+	CafeItem menu_list[MAX_MENU];		// 메뉴 목록
+	int menu_count;						// 등록된 메뉴 수
+	int balance;						// 사용자 잔액
+	string order_history[MAX_HISTORY];	// 주문 내역
+	int order_count;					// 주문 건수
 
 public:
-	CafeManager() : balance(10000) {}
+	CafeManager(int money) : balance(money), menu_count(0), order_count(0) {}
 
 	// 메뉴 등록
 	void add_menu(string name, int price, string category) {
-		menu_list.push_back(CafeItem(name, price, category));
+		menu_list[menu_count++] = CafeItem(name, price, category);
 	}
 
 	// 메뉴 출력
 	void print_menu() const {
 		cout << "\n===== 메뉴 =====" << endl;
-		for (int i = 0; i < (int)menu_list.size(); i++) {
+		for (int i = 0; i < menu_count; i++) {
 			cout << (i + 1) << ". ";
-			menu_list[i].print_info();
+			menu_list[i].display();
 		}
 		cout << "0. 종료" << endl;
 	}
-
-	// 주문 메서드 (예외 처리)
+	// 주문 메서드: 유효성 검사 후 예외 throw만 담당, catch문은 main에서 담당
 	void order(int menu_idx, int quantity) {
-		try {
-			// [요구사항] 수량 0 이하 시 int형 예외 throw
-			if (quantity <= 0) throw quantity;
+		// [요구사항] 수량 0 이하 시 int형 예외 throw
+		if (quantity <= 0) throw quantity;
 
-			int total_price = menu_list[menu_idx].get_price() * quantity;
+		int total_price = menu_list[menu_idx].get_price() * quantity;
 
-			// [요구사항] 잔액 부족 시 float형 예외 throw
-			if (balance < total_price) {
-				float shortage = (float)(total_price - balance);
-				throw shortage;
-			}
-
-			// 결제 완료
-			balance -= total_price;
-			string order_info = menu_list[menu_idx].get_name()
-				+ " x" + to_string(quantity);
-			order_history.push_back(order_info);
-			cout << "주문 완료: " << order_info << " (" << total_price
-				 << "원) [잔액: " << balance << "원]" << endl;
-
+		// [요구사항] 잔액 부족 시 float형 예외 throw
+		if (balance < total_price) {
+			// [요구사항] 명시적 형 변환 (int를 float로)
+			float shortage = (float)(total_price - balance);
+			throw shortage;
 		}
-		// [요구사항] int형 예외 처리
-		catch (int qty) {
-			cout << "수량 오류: " << qty << "은(는) 유효하지 않습니다." << endl;
-		}
-		// [요구사항] float형 예외 처리
-		catch (float shortage) {
-			cout << "결제 오류: " << (int)shortage << "원이 부족합니다." << endl;
-		}
-		// [요구사항] 예상치 못한 예외 처리
-		catch (...) {
-			cout << "알 수 없는 오류가 발생했습니다." << endl;
-		}
+		// 결제 완료
+		balance -= total_price;
+		
+		// 주문 내역에 추가 
+		string order_info = menu_list[menu_idx].get_name()
+			+ " x " + to_string(quantity) 
+			+ " = " + to_string(menu_list[menu_idx].get_price() * quantity) +"원";
+		order_history[order_count++] = order_info;	
+		cout <<endl<< "주문 완료: " << order_info << " (" << total_price << "원)" << endl;
 	}
 
 	// 현재 잔액 조회
@@ -101,30 +110,35 @@ public:
 		cout << "현재 잔액: " << balance << "원" << endl;
 	}
 
+	// 잔액 조회 getter
+	int get_balance() const { return balance; }
+
 	// 주문 내역 출력
 	void print_order_history() {
 		cout << "\n===== 주문 내역 =====" << endl;
-		if (order_history.empty()) {
+		if (order_count == 0) {
 			cout << "주문 내역이 없습니다." << endl;
-		} else {
-			for (int i = 0; i < (int)order_history.size(); i++) {
+		}
+		else {
+			for (int i = 0; i < order_count; i++) {
 				cout << (i + 1) << ". " << order_history[i] << endl;
 			}
 		}
 	}
 
 	// 메뉴 개수 반환
-	int get_menu_size() const { return menu_list.size(); }
+	int get_menu_size() const { return menu_count; }
 };
 
 int main() {
-	CafeManager cafe;
+	const int Money = 20000;
+	CafeManager cafe(Money);
 
 	// 메뉴 등록
-	cafe.add_menu("아메리카노", 3000, "커피");
-	cafe.add_menu("카페라떼", 4500, "커피");
-	cafe.add_menu("초콜릿", 5000, "음료");
-	cafe.add_menu("우유", 2000, "음료");
+	cafe.add_menu("아메리카노", 2000, "커피");
+	cafe.add_menu("콜드브루", 3000, "커피");
+	cafe.add_menu("바닐라라떼", 3500, "라떼");
+	cafe.add_menu("카페라뗴", 3000, "라뗴");
 	cafe.add_menu("쿠키", 2500, "음식");
 	cafe.add_menu("샌드위치", 7000, "음식");
 
@@ -163,8 +177,23 @@ int main() {
 			cout << "수량: ";
 			cin >> quantity;
 
-			// [요구사항] 명시적 형 변환 (int를 float로)
-			cafe.order(menu_choice - 1, quantity);
+			// [요구사항] try, catch, throw를 활용한 예외 처리
+			try {
+				cafe.order(menu_choice - 1, quantity);	// order 내부에서 throw 발생
+				cout << "[잔액: " << cafe.get_balance() << "원]" << endl;
+			}
+			// [요구사항] int형 예외 처리
+			catch (int qty) {
+				cout << "수량 오류: " << qty << "은(는) 유효하지 않습니다." << endl;
+			}
+			// [요구사항] float형 예외 처리
+			catch (float shortage) {
+				cout << "결제 오류: " << (int)shortage << "원이 부족합니다." << endl;
+			}
+			// [요구사항] 예상치 못한 예외 처리
+			catch (...) {
+				cout << "알 수 없는 오류가 발생했습니다." << endl;
+			}
 			break;
 		}
 		case 2:

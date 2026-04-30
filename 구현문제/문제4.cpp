@@ -9,20 +9,13 @@ private:
 	string name;				// 학생 이름
 	int scores[3];				// 과목 점수 3개
 	double average;				// 평균
-
-	// 평균 계산 메서드
-	void calculate_average() {
-		// [요구사항] 명시적 형 변환으로 double로 계산
-		average = (double)(scores[0] + scores[1] + scores[2]) / 3.0;
-	}
-
 public:
 	// 이름 설정
 	void set_name(string n) {
 		name = n;
 	}
 
-	// 과목 점수 입력 (유효성 검사)
+	// 과목 점수 입력 (3과목 반복 입력)
 	void input_scores() {
 		for (int i = 0; i < 3; i++) {
 			while (true) {
@@ -37,23 +30,24 @@ public:
 				break;
 			}
 		}
-		calculate_average(); // 입력 완료 후 평균 계산
+		// 입력 완료 후 평균 계산 [요구사항] 명시적 형 변환으로 double로 계산
+		average = (double)(scores[0] + scores[1] + scores[2]) / 3.0;
 	}
 
 	// 학생 정보 출력
-	void print_info() {
+	void print_info() const{
 		cout << "이름: " << name << " | 점수: " << scores[0] << ", "
 			 << scores[1] << ", " << scores[2] << " | 평균: "
 			 << fixed << setprecision(2) << average << endl;
 	}
 
 	// 평균 반환 (최고 평균 학생 찾기용)
-	double get_average() {
+	double get_average() const {
 		return average;
 	}
 
 	// 이름 반환
-	string get_name() {
+	string get_name() const {
 		return name;
 	}
 };
@@ -89,7 +83,7 @@ int main() {
 		}
 	}
 
-	cout << "최고 평균 학생: " << students[max_index].get_name()
+	cout << endl <<  "최고 평균 학생: " << students[max_index].get_name()
 		 << " (" << fixed << setprecision(2) << max_average << ")" << endl;
 
 	return 0;
