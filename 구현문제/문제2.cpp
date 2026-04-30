@@ -1,34 +1,64 @@
 #include <iostream>
-#include <string>
-#include <bitset>
 using namespace std;
 
 int main() {
-	int command;			// 사용자가 입력할 권한
-	int permission = 0;		// 최종 권한값
-	int mask = 1;			// 포함여부 판별용 
-	string names[4] = {		// 권한 목록
-		"읽기 권한",
-		"쓰기 권한",
-		"실행 권한",
-		"삭제 권한"
-	};
+	int start, end;
+	int count = 0; // 출력된 곱셈 결과 개수
+	bool validInput = false;
 
-	cout << "권한 설정 (1:읽기, 2:쓰기, 4:실행, 8:삭제, 0:설정 완료)" << endl;
-	while (true) {
-		cout << "권한 입력: ";
-		cin >> command;
-		if (command == 0)	break;
+	// [요구사항] do-while으로 유효 입력받기 (2~9, start <= end)
+	do {
+		validInput = true;
+		cout << "시작 단 입력: ";
+		cin >> start;
+		cout << "끝 단 입력: ";
+		cin >> end;
 
-		permission |= command;
+		// start > end 체크
+		if (start > end) {
+			cout << "잘못된 입력입니다." << endl;
+			validInput = false;
+		}
+
+		// 범위 체크 (2 이상 9 이하)
+		if ((start < 2 || start > 9) || (end < 2 || end > 9)) {
+			cout << "단의 범위는 2 이상 9 이하입니다." << endl;
+			validInput = false;
+		}
+	} while (!validInput);
+
+	// [요구사항] 각 단 출력 (홀수 결과만, 50 초과 시 중단)
+	for (int dan = start; dan <= end; dan++) {
+		cout << "[" << dan << "단] (홀수 결과만, 50 초과 시 중단)" << endl;
+		bool stopDan = false;
+
+		for (int i = 1; i <= 9; i++) {
+			int result = dan * i;
+
+			// [요구사항] 50 초과 시 해당 단 중단
+			if (result > 50) {
+				cout << "-> " << dan << "단 중단 (50 초과)" << endl;
+				stopDan = true;
+				break; // break로 현재 단 종료
+			}
+
+			// [요구사항] continue로 홀수 결과만 출력
+			if (result % 2 == 0) {
+				continue; // 짝수는 건너뛰기
+			}
+
+			cout << dan << " x " << i << " = " << result << endl;
+			count++; // 출력 개수 증가
+		}
+
+		// 50 초과로 중단되지 않은 경우 메시지 출력
+		if (!stopDan && (dan * 9) > 50) {
+			cout << "-> " << dan << "단 중단 (50 초과)" << endl;
+		}
 	}
-	cout << "[권한 판별 결과]" << endl;
-	for (int i = 0; i < 4; i++) {
-		cout << names[i] << ": " << std::boolalpha <<
-			((permission & mask) != 0) << endl;
-		mask <<= 1;
-	}
-	cout << "권한 값: " << permission << " (" << bitset<8>(permission) << ")" << endl;
+
+	// [요구사항] 출력된 곱셈 결과 총 개수 출력
+	cout << "출력된 곱셈 결과 총 개수: " << count << endl;
 
 	return 0;
 }

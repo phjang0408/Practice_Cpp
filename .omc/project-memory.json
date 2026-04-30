@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1775134462895,
+  "lastScanned": 1777518829345,
   "projectRoot": "/Users/dnln/Desktop/Code/Practice_Cpp",
   "techStack": {
     "languages": [],
@@ -36,21 +36,21 @@
       "path": "DOIT",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1775134462875,
+      "lastAccessed": 1777518829178,
       "keyFiles": []
     },
     "ForVS": {
       "path": "ForVS",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1775134462875,
+      "lastAccessed": 1777518829254,
       "keyFiles": []
     },
     "Old_Version": {
       "path": "Old_Version",
       "purpose": null,
       "fileCount": 9,
-      "lastAccessed": 1775134462876,
+      "lastAccessed": 1777518829287,
       "keyFiles": [
         "6C_0.cpp",
         "ExClass.cpp",
@@ -63,7 +63,7 @@
       "path": "Practice_Problems",
       "purpose": null,
       "fileCount": 38,
-      "lastAccessed": 1775134462877,
+      "lastAccessed": 1777518829288,
       "keyFiles": [
         "BJ_10178.cpp",
         "BJ_10250.cpp",
@@ -76,7 +76,7 @@
       "path": "과제1",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1775134462877,
+      "lastAccessed": 1777518829288,
       "keyFiles": [
         "1.cpp",
         "2.cpp",
@@ -84,11 +84,24 @@
         "4.cpp"
       ]
     },
+    "구현문제": {
+      "path": "구현문제",
+      "purpose": null,
+      "fileCount": 7,
+      "lastAccessed": 1777518829289,
+      "keyFiles": [
+        "중간고사 대체 과제.pdf",
+        "문제1.cpp",
+        "문제2.cpp",
+        "문제3.cpp",
+        "문제4.cpp"
+      ]
+    },
     "알고리즘": {
       "path": "알고리즘",
       "purpose": null,
       "fileCount": 3,
-      "lastAccessed": 1775134462877,
+      "lastAccessed": 1777518829289,
       "keyFiles": [
         "로드맵.md",
         "문자열_split함수",
@@ -99,7 +112,7 @@
       "path": "형변환",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1775134462878,
+      "lastAccessed": 1777518829290,
       "keyFiles": [
         "1_static_cast.cpp",
         "2_dynamic_cast.cpp",
@@ -109,6 +122,48 @@
     }
   },
   "hotPaths": [
+    {
+      "path": "구현문제/문제3.cpp",
+      "accessCount": 7,
+      "lastAccessed": 1777520117851,
+      "type": "file"
+    },
+    {
+      "path": "구현문제/문제5.cpp",
+      "accessCount": 3,
+      "lastAccessed": 1777519918682,
+      "type": "file"
+    },
+    {
+      "path": "구현문제/문제1.cpp",
+      "accessCount": 3,
+      "lastAccessed": 1777519935210,
+      "type": "file"
+    },
+    {
+      "path": "구현문제/문제2.cpp",
+      "accessCount": 3,
+      "lastAccessed": 1777519935528,
+      "type": "file"
+    },
+    {
+      "path": "구현문제/문제4.cpp",
+      "accessCount": 3,
+      "lastAccessed": 1777519935911,
+      "type": "file"
+    },
+    {
+      "path": "구현문제/문제6.cpp",
+      "accessCount": 3,
+      "lastAccessed": 1777519936051,
+      "type": "file"
+    },
+    {
+      "path": "구현문제/중간고사 대체 과제.pdf",
+      "accessCount": 2,
+      "lastAccessed": 1777519918369,
+      "type": "file"
+    },
     {
       "path": "알고리즘/01_오리엔테이션_C++기초/unique_중복제거.cpp",
       "accessCount": 1,
@@ -149,6 +204,18 @@
       "path": "알고리즘/03_그래프이론과_탐색/인접행렬_인접리스트.cpp",
       "accessCount": 1,
       "lastAccessed": 1775134610798,
+      "type": "file"
+    },
+    {
+      "path": "구현문제/검토_및_구현_요약.md",
+      "accessCount": 1,
+      "lastAccessed": 1777519459877,
+      "type": "file"
+    },
+    {
+      "path": "구현문제/문제6_설계설명서.md",
+      "accessCount": 1,
+      "lastAccessed": 1777520141786,
       "type": "file"
     }
   ],
