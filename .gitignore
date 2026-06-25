@@ -47,5 +47,6 @@ Release/
 *.exe
 *.out
 *.app
+.omc
 
 # End of https://www.toptal.com/developers/gitignore/api/c++
