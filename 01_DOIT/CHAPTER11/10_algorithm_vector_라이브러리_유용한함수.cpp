@@ -15,7 +15,7 @@ void print_Vector(const vector<T>& t) {
 }
 
 int main() {
-	vector<int> myVector = { 3,1,2,5,4 };
+	vector<int> myVector = { 3,1,2,4, 4,4 };
 
 	// 1. reverse -> 뒤집기
 	std::reverse(myVector.begin(), myVector.end());
