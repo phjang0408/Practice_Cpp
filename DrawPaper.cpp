@@ -1,16 +1,15 @@
-#include <string>
+#include <iostream>
 #include <vector>
 #include <algorithm>
-#include <iostream>
+
 using namespace std;
 
+int main() {
+    vector<int> nums = {6, 3, 1, 4, 2};
+    sort(nums.begin(), nums.end());
 
-int main(){
-    vector<string> s = {"r c", "r c", "r c"};
-    for(auto x : s){cout << x << endl;}
-    cout << endl;
-    
-    unique(s.begin(), s.end());
-    for(auto x : s){cout << x << endl;}
+    for(int x : nums){
+        if(x%2==0){cout << x << " ";}
+    }
     return 0;
 }
