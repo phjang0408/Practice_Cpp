@@ -1,12 +1,17 @@
-﻿#include <string>
+﻿#include <iostream>
+#include <string>
 #include <vector>
 
 using namespace std;
 
-int solution(int slice, int n) {
-    int answer = 0;
-    while (answer < n) {
-        answer += slice;
-    }
-    return answer / slice;
+inline int I_MUL(int x, int y) {
+	return x * y;
+}
+
+#define M_MUL(x,y) ((x) * (y))
+
+int main(void) {
+	cout << I_MUL(1, 2) << endl;
+	cout << M_MUL(1, 2) << endl;
+	return 0;
 }
