@@ -24,6 +24,13 @@ inline int I_MUL(int x, int y) {
 	return x * y;
 }
 
+class Game{
+    static inline int PlayerCount = 0; // static inline 변수, C++17부터 가능
+}
+
+inline constexpr float Gravity = 9.8f; // 전역상수도 가능
+// inline constexpr 변수, C++17부터 가능
+
 int main(void) {
     int a = I_MUL(1, 2); // inline함수 호출
     // 인라인 확장되면 컴파일러는 사실상 아래처럼 바꿔서 컴파일함
